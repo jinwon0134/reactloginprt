@@ -1,19 +1,17 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import "./index.css";
+import ProfilePage from "./pages/ProfilePage"; // 프로필 페이지 import
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
-
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-  };
-
   return (
-    <div className="app-container">
-      {isLogin ? <LoginPage toggleForm={toggleForm} /> : <RegisterPage toggleForm={toggleForm} />}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/profile" element={<ProfilePage />} /> {/* 프로필 페이지 라우트 추가 */}
+      </Routes>
+    </Router>
   );
 }
 

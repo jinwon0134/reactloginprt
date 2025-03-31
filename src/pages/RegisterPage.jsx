@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";  // useNavigate import
 import "../styles/auth.css";
 
 const RegisterPage = () => {
@@ -7,6 +8,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();  // navigate 함수 초기화
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +22,9 @@ const RegisterPage = () => {
       });
       alert("회원가입 성공!");
       console.log("회원가입 성공:", response.data);
+
+      // 회원가입 성공 후 로그인 페이지로 리디렉션
+      navigate("/");  // 로그인 페이지로 이동
     } catch (error) {
       const status = error.response ? error.response.status : "응답 없음";
       alert(`회원가입 실패했습니다. (상태 코드: ${status})`);
